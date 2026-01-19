@@ -1,0 +1,264 @@
+/* ================= HOME ================= */
+.home {
+  min-height: calc(100vh - 80px); /* slight reduction */
+  padding: 10px 60px 10px 60px;        /* bottom padding kam */
+  /* background: radial-gradient(circle at top, #0f172a, #020617); */
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  /* padding: 30px; */
+}
+
+.home-content {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+/* ================= INTRO ================= */
+.intro h1 {
+  transform: scaleY(1.1);
+  font-size: 55px;
+  margin-bottom: 5px;
+}
+
+/* .intro h1 span {
+  color: #38bdf8;
+} */
+
+.intro h1 span {
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  background-clip: text;          /* standard */
+  -webkit-background-clip: text;  /* chrome/safari */
+  color: transparent;
+}
+
+
+.static-text {
+  color: #cbd5f5;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+/* ================= SKILL ANIMATION ================= */
+.skill-animated {
+  margin-bottom: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: left;
+}
+
+/* STRETCH*/
+.skill-stretch {
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 40px;
+  font-weight: 400;
+  color: #6c8ec0;
+
+  max-width: 450px; 
+  white-space: normal; 
+  line-height: 1.3;
+  text-align: left;
+
+  transform: scaleY(1.5); /* LOCKED stretch */
+}
+
+/* ONLY MOVE + FADE (NO SCALE HERE) */
+.skill-animated .skill-stretch {
+  animation: slideFade 0.7s ease;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scaleY(1.5);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1.5);
+  }
+}
+
+/* ================= CTA ================= */
+.home-cta {
+  display: flex;
+  gap: 16px;
+}
+
+.btn {
+  padding: 13px 26px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  /* background: linear-gradient(90deg, #174c63, #176634); */
+  background: transparent;
+  border: 2px solid #138dc2;
+  color: #2889b3;
+  /* color: #020617;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.45); */
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  background: #17739b;
+  color: #020617;
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 2px solid #17739b;
+  color: #2889b3;
+}
+
+.secondary-btn:hover {
+  transform: translateY(-3px);
+  background: #38bdf8;
+  color: #020617;
+}
+
+/* ================= PHOTO ================= */
+.photo-container {
+  display: flex;
+  justify-content: center;
+  margin-right: 80px;
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+/* GLOWING BORDER */
+.photo-border {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #38bdf8,
+    #22c55e,
+    #facc15,
+    #ec4899,
+    #38bdf8
+  );
+  filter: blur(8px);
+  animation: spinGlow 6s linear infinite,
+             pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* PHOTO */
+.photo-wrapper img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #020617;
+  border: 4px solid #020617;
+}
+
+/* BORDER ANIMATION */
+@keyframes spinGlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ================= MODAL ================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  width: 80%;
+  height: 85%;
+  background: #020617;
+  border-radius: 12px;
+  position: relative;
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.resume-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .home-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .home {
+    padding: 60px 20px;
+  }
+
+  .home-cta {
+    justify-content: center;
+  }
+
+  .photo-wrapper {
+    width: 230px;
+    height: 230px;
+  }
+
+  .skill-animated span {
+    font-size: 20px;
+  }
+}
